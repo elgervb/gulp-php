@@ -3,5 +3,7 @@
 if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
     return false;    // serve the requested resource as-is 
 }
+
+$path = $_SERVER['REQUEST_URI'];
     
-echo "<p>Thanks for using gulp-connect-php :)</p>";
+echo "<p>Requested ".$path."</p>";

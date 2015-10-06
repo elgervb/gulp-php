@@ -1,11 +1,37 @@
+/* global __dirname */
 var gulp = require('gulp'),
     notify  = require('gulp-notify'),
-    phpunit = require('gulp-phpunit')
+    phpunit = require('gulp-phpunit'),
     _       = require('lodash'),
     browserSync = require('browser-sync');
 
 var reload  = browserSync.reload;
- 
+
+
+gulp.task('default', ['start']);
+
+
+gulp.task('php', function() {
+	return require('gulp-connect-php').server({
+		base: './base',
+		port: 4011,
+		keepalive: true
+	});
+});
+
+
+gulp.task('start', ['php'], function() {
+    browserSync({
+        proxy: '127.0.0.1:4011',
+        port: 4010,
+        open: false,
+        notify: true
+    });
+    
+    gulp.watch(['/**/*.php'], [reload]);
+});
+
+
 gulp.task('test', function() {
     var options = {debug: false, notify: true, stderr: true};
     gulp.src('phpunit.xml')
@@ -14,27 +40,8 @@ gulp.task('test', function() {
         .pipe(notify(notification('pass', 'phpunit')));
 });
 
-gulp.task('php', function() {
-	return require('gulp-connect-php').server({
-		base: './base', 
-		port: 8080, 
-		keepalive: true,
-		router: 'routes.php'
-	});
-});
-gulp.task('browser-sync',['php'], function() {
-    browserSync({
-        proxy: '127.0.0.1:8080',
-        port: 8081,
-        open: false,
-        notify: true
-    });
-});
-gulp.task('default', ['browser-sync'], function () {
-    gulp.watch(['build/*.php'], [reload]);
-});
- 
-gulp.task('default', function(){
+
+gulp.task('test:watch', function(){
 	var path = require('path');
     gulp.watch('./**/*.php')
         .on("change", function(file) {
@@ -49,9 +56,6 @@ gulp.task('default', function(){
         });
 });
 
-gulp.task('default', ['browser-sync'], function () {
-    gulp.watch(['./base/**/*.php'], [reload]);
-});
 
 function notification(status, pluginName, override) {
     var options = {
