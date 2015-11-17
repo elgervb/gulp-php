@@ -10,4 +10,4 @@ function loader($class)
 }
 spl_autoload_register('loader');
 
-include 'vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
