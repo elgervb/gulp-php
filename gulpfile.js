@@ -8,19 +8,16 @@ var gulp = require('gulp'),
 var reload  = browserSync.reload;
 
 
-gulp.task('default', ['start']);
-
-
-gulp.task('php', function() {
+gulp.task('serve', function() {
 	return require('gulp-connect-php').server({
-		base: './base',
+		base: './src',
 		port: 4011,
 		keepalive: true
 	});
 });
 
 
-gulp.task('start', ['php'], function() {
+gulp.task('start', ['serve'], function() {
     browserSync({
         proxy: '127.0.0.1:4011',
         port: 4010,

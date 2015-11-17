@@ -1,0 +1,34 @@
+{
+	"name" : "elgervb/gulp-php",
+	"description" : "Gulp for PHP",
+	"type" : "library",
+	"authors" : [{
+			"name" : "Elger van Boxtel",
+			"email" : "elgervb@gmail.com",
+			"homepage" : "http://elgervanboxtel.nl",
+			"role" : "developer"
+		}
+	],
+	"keywords" : [
+		"gulpjs",
+		"gulp"
+	],
+	"homepage" : "https://github.com/elgervb/gulp-php",
+	"license" : [
+		"MIT"
+	],
+	"require-dev" : {
+		"phpunit/phpunit" : "^4.8"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"ns" : ""
+		}
+	},
+	"support" : {
+		"wiki" : "https://github.com/elgervb/gulp-php/wiki",
+		"source" : "https://github.com/elgervb/gulp-php",
+		"issues" : "https://github.com/elgervb/gulp-php/issues",
+		"email" : "elgervb@gmail.com"
+	}
+}
