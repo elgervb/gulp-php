@@ -22,7 +22,10 @@
 	},
 	"autoload" : {
 		"psr-0" : {
-			"ns" : ""
+			"ns" : [
+				"src",
+				"tests"
+			]
 		}
 	},
 	"support" : {
