@@ -21,6 +21,7 @@ echo -e "\n--- Install Apache webserver ---\n"
 sudo apt-get install -y apache2
 sudo a2enmod rewrite > /dev/null 2>&1
 sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
+echo "ServerName localhost" | sudo tee /etc/apache2/conf.d/fqdn
 if ! [ -L /var/www ]; then
   rm -rf /var/www
   ln -fs /vagrant/src /var/www
