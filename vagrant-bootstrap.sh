@@ -30,7 +30,7 @@ fi
 # install PHP 
 echo -e "\n--- Install PHP ---\n"
 add-apt-repository ppa:ondrej/php5 > /dev/null 2>&1
-apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc > /dev/null 2>&1
+apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php5-sqlite php-apc > /dev/null 2>&1
 # turn on PHP errors
 # sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
 # sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/apache2/php.ini
