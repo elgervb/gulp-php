@@ -65,6 +65,8 @@ echo -e "\n\nListen 81\n" >> /etc/apache2/ports.conf
 if ! [ -d /var/www ]; then
   sudo mkdir conf-available
 fi
+
+touch /etc/apache2/conf-available/phpmyadmin.conf
 cat > /etc/apache2/conf-available/phpmyadmin.conf << "EOF"
 <VirtualHost *:81>
     ServerAdmin webmaster@localhost
@@ -108,8 +110,8 @@ service apache2 restart > /dev/null 2>&1
 # # update project
 # echo -e "\n--- Updating project components and pulling latest versions ---\n"
 # npm install -g gulp bower > /dev/null 2>&1
-# cd /vagrant
-# sudo -u vagrant -H sh -c "composer install" > /dev/null 2>&1
+cd /vagrant
+sudo composer install > /dev/null 2>&1
 
 # # cd /vagrant/
 # # sudo -u vagrant -H sh -c "npm install" #> /dev/null 2>&1
