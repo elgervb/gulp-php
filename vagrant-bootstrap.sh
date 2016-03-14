@@ -62,12 +62,10 @@ mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'loc
 # Configure Apache to use phpmyadmin
 echo -e "\n--- Configure Apache to use phpmyadmin ---\n"
 echo -e "\n\nListen 81\n" >> /etc/apache2/ports.conf
-if ! [ -d /var/www ]; then
-  sudo mkdir conf-available
-fi
 
-touch /etc/apache2/conf-available/phpmyadmin.conf
-cat > /etc/apache2/conf-available/phpmyadmin.conf << "EOF"
+sudo mkdir /etc/apache2/conf-available
+sudo touch /etc/apache2/conf-available/phpmyadmin.conf
+sudo cat > /etc/apache2/conf-available/phpmyadmin.conf << "EOF"
 <VirtualHost *:81>
     ServerAdmin webmaster@localhost
     DocumentRoot /usr/share/phpmyadmin
