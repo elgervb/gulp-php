@@ -7,12 +7,13 @@ DBNAME=dbname
 DBUSER=dbuser
 DBPASSWD=test123
 
-apt-get -qq update
+sudo apt-get -qq update
 
 
 # install base packages
 echo -e "\n--- Install base packages ---\n"
-sudo apt-get -y install vim curl git build-essentials python-software-properties > /dev/null 2>&1
+# sudo apt-get -y install curl vim git build-essentials python-software-properties > /dev/null 2>&1
+sudo apt-get -y install curl vim git python-software-properties > /dev/null 2>&1
 
 
 # install Apache and enable mod-rewrite
@@ -89,31 +90,30 @@ cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
 EOF
 
 
-# install node.js incl npm
-echo -e "\n--- Install NodeJS ---\n"
-curl -sL https://deb.nodesource.com/setup | sudo bash - > /dev/null 2>&1
-sudo apt-get -y install nodejs > /dev/null 2>&1
-sudo npm -g install npm@latest > /dev/null 2>&1
+# # install node.js incl npm
+# echo -e "\n--- Install NodeJS ---\n"
+# sudo curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
 
-# curl --silent https://npmjs.org/install.sh | sh > /dev/null 2>&1
+# #curl -sL https://deb.nodesource.com/setup | sudo bash - > /dev/null 2>&1
+# #sudo apt-get -y install nodejs > /dev/null 2>&1
+# #sudo npm -g install npm@latest > /dev/null 2>&1
+# # curl --silent https://npmjs.org/install.sh | sh > /dev/null 2>&1
 
 
 # Post processing
 echo -e "\n--- Restarting Apache ---\n"
 service apache2 restart > /dev/null 2>&1
 
+# # update project
+# echo -e "\n--- Updating project components and pulling latest versions ---\n"
+# npm install -g gulp bower > /dev/null 2>&1
+# cd /vagrant
+# sudo -u vagrant -H sh -c "composer install" > /dev/null 2>&1
 
-
-# update project
-echo -e "\n--- Updating project components and pulling latest versions ---\n"
-npm install -g gulp bower > /dev/null 2>&1
-cd /vagrant
-sudo -u vagrant -H sh -c "composer install" > /dev/null 2>&1
-
-cd /vagrant/
-sudo -u vagrant -H sh -c "npm install" #> /dev/null 2>&1
-sudo -u vagrant -H sh -c "bower install -s" #> /dev/null 2>&1
-sudo -u vagrant -H sh -c "gulp" #> /dev/null 2>&1
+# # cd /vagrant/
+# # sudo -u vagrant -H sh -c "npm install" #> /dev/null 2>&1
+# # sudo -u vagrant -H sh -c "bower install -s" #> /dev/null 2>&1
+# # sudo -u vagrant -H sh -c "gulp" #> /dev/null 2>&1
 
 echo -e "\n--- Creating a symlink for future phpunit use ---\n"
 ln -fs /vagrant/vendor/bin/phpunit /usr/local/bin/phpunit
