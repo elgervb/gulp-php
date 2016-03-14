@@ -27,6 +27,14 @@ if ! [ -L /var/www ]; then
   ln -fs /vagrant/src /var/www
 fi
 
+# enable ssl
+sudo make-ssl-cert generate-default-snakeoil --force-overwrite
+sudo a2enmod ssl
+sudo service apache2 restart
+sudo a2ensite default-ssl
+sudo service apache2 restart
+
+
 
 # install PHP 
 echo -e "\n--- Install PHP ---\n"
