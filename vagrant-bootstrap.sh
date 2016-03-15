@@ -31,11 +31,12 @@ fi
 sudo make-ssl-cert generate-default-snakeoil --force-overwrite
 sudo a2enmod ssl
 sudo a2enmod headers
-# allow override all
-sudo sed -i "s/AllowOverride .*/AllowOverride All/" /etc/apache2/sites-available/default
-sudo service apache2 restart
 
 sudo a2ensite default-ssl
+
+# allow override all
+sudo sed -i "s/AllowOverride .*/AllowOverride All/" /etc/apache2/sites-available/default
+sudo sed -i "s/AllowOverride .*/AllowOverride All/" /etc/apache2/sites-available/default-ssl
 sudo service apache2 restart
 
 
