@@ -140,3 +140,7 @@ export DB_NAME=$DBNAME
 export DB_USER=$DBUSER
 export DB_PASS=$DBPASSWD
 EOF
+
+
+# lastly, update database for mlocate in the background
+sudo updatedb &
