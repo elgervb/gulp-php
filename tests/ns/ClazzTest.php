@@ -3,7 +3,7 @@ namespace ns;
 
 /**
  *
- * @author eaboxt
+ * @author Elger van Boxtel
  *        
  */
 class ClazzTest extends \PHPUnit_Framework_TestCase
@@ -22,7 +22,7 @@ class ClazzTest extends \PHPUnit_Framework_TestCase
     }
     
     public function testName(){
-        $expected = 'qwerty';
+        $expected = 'qwerty'; 
         $this->clazz->setName($expected);
         
         $this->assertEquals($expected, $this->clazz->getName());

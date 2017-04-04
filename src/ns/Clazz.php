@@ -1,6 +1,11 @@
 <?php
 namespace ns;
 
+/**
+ *
+ * @author Elger van Boxtel
+ *
+ */
 class Clazz
 {
 
